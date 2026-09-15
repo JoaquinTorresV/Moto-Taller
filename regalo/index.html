@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía gratis: Evita las 10 fallas más comunes de tu moto</title>
+<meta name="description" content="Descarga gratis la guía para reconocer a tiempo las 10 fallas más comunes de tu moto y prevenirlas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --negro:#000; --blanco:#fff; --fondo:#0b0b0b; --acento:#ff5b14; --acento-hover:#ff7a3d; --linea:#262626; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--fondo);color:var(--blanco);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+  h1,h2,.display{font-family:Oswald,Impact,"Arial Narrow",sans-serif;text-transform:uppercase;line-height:1.02;letter-spacing:.3px}
+  .topbar{background:var(--acento);color:var(--negro);text-align:center;font-weight:700;font-size:14px;padding:9px 16px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{height:64px;display:flex;align-items:center;border-bottom:1px solid var(--linea)}
+  .logo{font-family:Oswald,sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .logo i{width:26px;height:26px;border-radius:50%;border:4px solid var(--acento);position:relative}
+  .logo i::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--acento)}
+
+  .hero{position:relative;overflow:hidden;padding:40px 0 64px}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 380px at 85% 15%,rgba(255,91,20,.2),transparent 70%);pointer-events:none}
+  .grid{position:relative;display:grid;gap:36px;align-items:center}
+  .eyebrow{display:inline-block;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--acento);margin-bottom:12px}
+  h1{font-size:clamp(38px,9vw,60px);margin-bottom:16px}
+  h1 span{color:var(--acento)}
+  .lead{font-size:18px;max-width:560px}
+
+  /* portada de la guía */
+  .guia{justify-self:center;width:min(270px,72vw);aspect-ratio:148/210;max-width:100%;background:var(--negro);border:1px solid var(--linea);border-radius:10px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 30px 60px -20px rgba(255,91,20,.45);transform:rotate(-3deg)}
+  .guia::before{content:"";position:absolute;inset:0;background:radial-gradient(180px 140px at 85% 15%,rgba(255,91,20,.35),transparent 70%)}
+  .guia > *{position:relative}
+  .guia .logo{font-size:12px;gap:6px}
+  .guia .logo i{width:14px;height:14px;border-width:3px}
+  .guia .logo i::after{inset:2px}
+  .guia small{color:var(--acento);font-weight:800;font-size:9px;letter-spacing:2px;text-transform:uppercase}
+  .guia strong{display:block;font-family:Oswald,sans-serif;text-transform:uppercase;font-size:30px;line-height:1;margin-top:6px}
+  .guia strong span{color:var(--acento)}
+  .guia em{font-style:normal;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
+  /* formulario */
+  form{margin-top:26px;max-width:520px}
+  label{display:block;font-weight:700;margin-bottom:8px}
+  input[type=email]{width:100%;font:inherit;font-size:18px;padding:17px 20px;border-radius:14px;border:2px solid var(--linea);background:var(--negro);color:var(--blanco);outline:none}
+  input[type=email]:focus{border-color:var(--acento)}
+  .trampa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  button{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--acento);color:var(--negro);font:inherit;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:.5px;padding:19px 24px;border-radius:999px;border:0;cursor:pointer;box-shadow:0 10px 30px -10px rgba(255,91,20,.7);transition:background .15s,transform .15s}
+  button:hover{background:var(--acento-hover);transform:translateY(-2px)}
+  button:disabled{opacity:.7;cursor:wait;transform:none}
+  button svg{width:20px;height:20px}
+  .error{margin-top:10px;font-weight:700;color:var(--acento);min-height:1.5em}
+  .nota{margin-top:6px;font-size:14px}
+
+  .contenido{border-top:1px solid var(--linea);padding:56px 0 64px}
+  h2{font-size:clamp(30px,6vw,42px);margin-bottom:22px}
+  .lista{list-style:none;display:grid;gap:14px;max-width:640px}
+  .lista li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
+  .lista li::before{content:"✓";flex:0 0 26px;height:26px;border-radius:50%;background:var(--acento);color:var(--negro);display:grid;place-items:center;font-weight:800;font-size:14px;margin-top:1px}
+  footer{border-top:1px solid var(--linea);padding:24px 0;font-size:13px}
+
+  @media (min-width:860px){
+    .hero{padding:72px 0 88px}
+    .grid{grid-template-columns:1.2fr .8fr;gap:56px}
+    .guia{width:300px}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">Guía gratuita · Te llega al correo en menos de un minuto</div>
+<header><div class="wrap"><div class="logo"><i></i>Mecánica de Motos</div></div></header>
+
+<main>
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">Guía gratis en PDF</span>
+        <h1>Evita las <span>10 fallas</span> más comunes de tu moto</h1>
+        <p class="lead">Aprende a reconocerlas a tiempo, qué revisar tú mismo y cómo prevenirlas antes de que te dejen botado.</p>
+
+        <form id="form" novalidate>
+          <label for="email">¿A qué correo te la enviamos?</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tucorreo@gmail.com" required>
+          <!-- campo trampa para bots: una persona no lo ve ni lo llena -->
+          <div class="trampa" aria-hidden="true"><input name="empresa" tabindex="-1" autocomplete="off"></div>
+          <button type="submit" id="enviar">
+            Enviarme la guía gratis
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <p class="error" id="error" role="alert"></p>
+          <p class="nota">Solo usamos tu correo para enviarte la guía y contenido sobre mecánica de motos.</p>
+        </form>
+      </div>
+
+      <div class="guia" aria-hidden="true">
+        <div class="logo"><i></i>Mecánica de Motos</div>
+        <div>
+          <small>Guía gratuita</small>
+          <strong>Evita las <span>10 fallas</span> más comunes de tu moto</strong>
+        </div>
+        <em>Diagnóstico · Checklist · Seguridad</em>
+      </div>
+    </div>
+  </section>
+
+  <section class="contenido">
+    <div class="wrap">
+      <h2>Qué vas a encontrar</h2>
+      <ul class="lista">
+        <li>10 fichas de las fallas más comunes: cómo se notan y qué las causa</li>
+        <li>Qué revisar tú mismo, con herramientas básicas</li>
+        <li>Cuándo sí conviene llevarla al taller y cuándo no pagar de más</li>
+        <li>Checklist de mantenimiento para marcar antes de salir, cada semana y periódico</li>
+        <li>6 reglas para trabajar seguro en tu moto</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Mecánica de Motos</div></footer>
+
+<script>
+  // [EDITAR] URL pública del dashboard, que es donde se guardan los leads
+  var API_PRODUCCION = 'https://test-dashboard.zsg4dp.easypanel.host/api/leads';
+  var local = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  var API = local ? 'http://localhost:3010/api/leads' : API_PRODUCCION;
+
+  var params = new URLSearchParams(location.search);
+  var form = document.getElementById('form');
+  var boton = document.getElementById('enviar');
+  var error = document.getElementById('error');
+
+  // la landing de venta está una carpeta más arriba que esta página
+  function urlOferta() {
+    var base = location.pathname.replace(/regalo\/?(index\.html)?$/, '');
+    var destino = new URLSearchParams({ regalo: 'enviado' });
+    if (params.get('src')) destino.set('src', params.get('src'));
+    return base + '?' + destino.toString();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    error.textContent = '';
+    var email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      error.textContent = 'Revisa tu correo, parece que le falta algo.';
+      form.email.focus();
+      return;
+    }
+
+    boton.disabled = true;
+    boton.firstChild.textContent = 'Enviando... ';
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        empresa: form.empresa.value,
+        source: params.get('src') || params.get('utm_source') || 'directo',
+        ref: params.get('ref'),
+        utm_source: params.get('utm_source'),
+        utm_medium: params.get('utm_medium'),
+        utm_campaign: params.get('utm_campaign'),
+        page: location.pathname
+      })
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error(data.error || 'No pudimos enviar tu guía. Intenta de nuevo.');
+          location.href = urlOferta();
+        });
+      })
+      .catch(function (err) {
+        error.textContent = err.message === 'Failed to fetch' ? 'Revisa tu conexión e intenta de nuevo.' : err.message;
+        boton.disabled = false;
+        boton.firstChild.textContent = 'Enviarme la guía gratis ';
+      });
+  });
+</script>
+</body>
+</html>

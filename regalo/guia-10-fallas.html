@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Evita las 10 fallas más comunes de tu moto — Mecánica de Motos</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A5; margin: 0; }
+  :root { --acento:#ff5b14; --negro:#000; --blanco:#fff; --oscuro:#0b0b0b; --linea:#e3e3e3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body { font-family:Inter, Arial, sans-serif; color:var(--negro); font-size:9.6pt; line-height:1.45; }
+  h1, h2, h3, .display { font-family:Oswald, "Arial Narrow", sans-serif; text-transform:uppercase; line-height:1.05; letter-spacing:.2px; }
+
+  .pagina { width:148mm; height:210mm; padding:13mm 12mm 14mm; position:relative; overflow:hidden; page-break-after:always; background:var(--blanco); }
+  .pagina:last-child { page-break-after:auto; }
+  .oscura { background:var(--oscuro); color:var(--blanco); }
+  .pie { position:absolute; left:12mm; right:12mm; bottom:7mm; display:flex; justify-content:space-between; font-size:7pt; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+  .oscura .pie { color:var(--blanco); }
+
+  .logo { display:flex; align-items:center; gap:7px; font-family:Oswald, sans-serif; font-weight:700; font-size:12pt; text-transform:uppercase; }
+  .logo i { width:16px; height:16px; border-radius:50%; border:3px solid var(--acento); position:relative; }
+  .logo i::after { content:""; position:absolute; inset:3px; border-radius:50%; background:var(--acento); }
+  .eyebrow { font-weight:800; font-size:7.5pt; letter-spacing:2px; text-transform:uppercase; color:var(--acento); margin-bottom:6px; }
+  .acento { color:var(--acento); }
+
+  /* portada */
+  .portada { display:flex; flex-direction:column; justify-content:space-between; }
+  .portada::before { content:""; position:absolute; inset:0; background:radial-gradient(90mm 70mm at 85% 20%, rgba(255,91,20,.28), transparent 70%); }
+  .portada > * { position:relative; }
+  .portada h1 { font-size:40pt; margin:6mm 0 5mm; }
+  .portada .sub { font-size:12pt; font-weight:500; max-width:110mm; }
+  .portada .etiquetas { display:flex; gap:6px; flex-wrap:wrap; margin-top:8mm; }
+  .portada .etiquetas span { border:1.5px solid var(--acento); border-radius:999px; padding:4px 10px; font-weight:700; font-size:8pt; }
+  .engranaje { font-family:Oswald, sans-serif; font-size:150pt; line-height:.8; color:var(--acento); font-weight:700; }
+
+  /* texto general */
+  h2 { font-size:21pt; margin-bottom:4mm; }
+  p + p { margin-top:2.5mm; }
+  .lista { list-style:none; display:grid; gap:2mm; }
+  .lista li { display:flex; gap:7px; align-items:flex-start; }
+  .lista li::before { content:""; flex:0 0 6px; height:6px; margin-top:5px; border-radius:50%; background:var(--acento); }
+
+  .indice { list-style:none; margin-top:4mm; border-top:1.5px solid var(--negro); }
+  .indice li { display:flex; align-items:baseline; gap:8px; padding:2.1mm 0; border-bottom:1px solid var(--linea); font-weight:500; }
+  .indice b { font-family:Oswald, sans-serif; color:var(--acento); font-size:11pt; width:18px; }
+  .indice em { margin-left:auto; font-style:normal; font-weight:700; }
+
+  /* fichas de falla */
+  .ficha-cabecera { display:flex; align-items:flex-end; gap:4mm; margin-bottom:4mm; padding-bottom:3mm; border-bottom:2px solid var(--negro); }
+  .ficha-cabecera .num { font-family:Oswald, sans-serif; font-weight:700; font-size:46pt; line-height:.8; color:var(--acento); }
+  .ficha-cabecera h2 { margin:0; font-size:19pt; }
+  .senal { background:var(--negro); color:var(--blanco); border-radius:10px; padding:3mm 4mm; margin-bottom:4mm; }
+  .senal strong { color:var(--acento); text-transform:uppercase; font-size:7.5pt; letter-spacing:1.5px; display:block; margin-bottom:1mm; }
+  .bloque { margin-bottom:3.6mm; }
+  .bloque h3 { font-size:10.5pt; margin-bottom:2mm; }
+  .taller { border:2px solid var(--acento); border-radius:10px; padding:3mm 4mm; }
+  .taller h3 { font-size:10pt; color:var(--acento); margin-bottom:1mm; }
+  .dato { margin-top:3mm; font-size:8.4pt; border-left:3px solid var(--acento); padding-left:3mm; }
+
+  /* humo */
+  .humos { display:grid; gap:2.5mm; margin-bottom:3.6mm; }
+  .humo { display:grid; grid-template-columns:22mm 1fr; gap:3mm; align-items:start; border:1px solid var(--linea); border-radius:10px; padding:2.5mm 3mm; }
+  .humo b { font-family:Oswald, sans-serif; text-transform:uppercase; font-size:10pt; }
+
+  /* checklist */
+  .check { width:100%; border-collapse:collapse; margin-bottom:4mm; }
+  .check caption { text-align:left; font-family:Oswald, sans-serif; text-transform:uppercase; font-size:11pt; margin-bottom:1.5mm; }
+  .check td { border-bottom:1px solid var(--linea); padding:1.6mm 0; vertical-align:top; }
+  .check td:first-child { width:7mm; }
+  .caja { display:inline-block; width:3.4mm; height:3.4mm; border:1.5px solid var(--negro); border-radius:2px; margin-top:.5mm; }
+  .check td:last-child { text-align:right; font-weight:700; white-space:nowrap; padding-left:3mm; }
+
+  /* seguridad */
+  .reglas { display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .regla { border:1px solid var(--linea); border-radius:10px; padding:3mm; }
+  .regla b { font-family:Oswald, sans-serif; font-size:16pt; color:var(--acento); display:block; line-height:1; margin-bottom:1.5mm; }
+
+  /* cierre */
+  .cierre h2 { font-size:25pt; }
+  .modulos { list-style:none; display:grid; gap:1.8mm; margin:4mm 0 6mm; }
+  .modulos li { display:flex; gap:3mm; align-items:baseline; border-bottom:1px solid #262626; padding-bottom:1.8mm; }
+  .modulos b { font-family:Oswald, sans-serif; color:var(--acento); }
+  .boton { display:block; text-align:center; background:var(--acento); color:var(--negro); font-weight:800; text-transform:uppercase; letter-spacing:.5px; text-decoration:none; padding:4mm; border-radius:999px; font-size:11pt; }
+  .boton-sub { text-align:center; font-size:8pt; margin-top:2mm; }
+</style>
+</head>
+<body>
+
+<!-- 1. PORTADA -->
+<section class="pagina oscura portada">
+  <div class="logo"><i></i>Mecánica de Motos</div>
+  <div>
+    <div class="eyebrow">Guía gratuita</div>
+    <h1>Evita las <span class="acento">10 fallas</span> más comunes de tu moto</h1>
+    <p class="sub">Cómo reconocerlas a tiempo, qué revisar tú mismo y cómo prevenirlas antes de que te dejen botado.</p>
+    <div class="etiquetas"><span>Diagnóstico</span><span>Checklist de mantenimiento</span><span>Seguridad</span></div>
+  </div>
+  <div class="pie"><span>Guía rápida</span><span>Mecánica de Motos</span></div>
+</section>
+
+<!-- 2. INTRO + ÍNDICE -->
+<section class="pagina">
+  <div class="eyebrow">Antes de empezar</div>
+  <h2>Casi toda falla avisa antes</h2>
+  <p>La mayoría de los problemas de una moto dan señales: un ruido nuevo, un humo distinto, una maneta que se siente rara. Si sabes leer esas señales, llegas al taller sabiendo qué pedir, o lo resuelves tú y no pagas de más.</p>
+  <p>En cada ficha vas a encontrar <b>cómo se nota la falla</b>, <b>las causas más probables</b>, <b>qué puedes revisar tú</b> con herramientas básicas y <b>cuándo conviene no arriesgarse</b>.</p>
+  <ul class="indice">
+    <li><b>01</b>No arranca: el motor ni gira<em>3</em></li>
+    <li><b>02</b>El motor gira pero no enciende<em>4</em></li>
+    <li><b>03</b>Se apaga en ralentí o en frío<em>5</em></li>
+    <li><b>04</b>Pierde fuerza o no acelera<em>6</em></li>
+    <li><b>05</b>Tirones y petardeos<em>7</em></li>
+    <li><b>06</b>Frenos débiles o que chillan<em>8</em></li>
+    <li><b>07</b>Cadena ruidosa o que salta<em>9</em></li>
+    <li><b>08</b>Se calienta demasiado<em>10</em></li>
+    <li><b>09</b>Humo por el escape<em>11</em></li>
+    <li><b>10</b>La batería se descarga<em>12</em></li>
+    <li><b>+</b>Checklist de mantenimiento y seguridad<em>13</em></li>
+  </ul>
+  <div class="pie"><span>Mecánica de Motos</span><span>2</span></div>
+</section>
+
+<!-- FALLA 01 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">01</span><h2>No arranca:<br>el motor ni gira</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Aprietas el botón de arranque y no pasa nada, o solo se escucha un "clic". Las luces del tablero pueden verse débiles.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Batería descargada o al final de su vida útil.</li>
+      <li>Bornes de la batería sueltos o sulfatados (con polvo blanco o verdoso).</li>
+      <li>Fusible quemado.</li>
+      <li>Un sensor de seguridad cortando el arranque: pata lateral abajo, moto en cambio o embrague sin apretar.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Pon la moto en neutro, sube la pata lateral y aprieta el embrague al arrancar.</li>
+      <li>Revisa que los bornes estén firmes y limpios.</li>
+      <li>Busca la caja de fusibles (el manual indica dónde está) y revisa si alguno está cortado.</li>
+      <li>Si tienes multímetro: una batería sana en reposo marca cerca de 12,6 V. Bajo 12 V está muy descargada.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>La batería está bien cargada, los fusibles están bien y aun así el motor no gira: puede ser el relé o el motor de arranque.</div>
+  <div class="pie"><span>Diagnóstico</span><span>3</span></div>
+</section>
+
+<!-- FALLA 02 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">02</span><h2>El motor gira<br>pero no enciende</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>El arranque funciona y el motor da vueltas, pero no llega a encender o enciende un segundo y se apaga.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Poco combustible o la llave de paso cerrada (en motos a carburador).</li>
+      <li>Bujía sucia, mojada o gastada.</li>
+      <li>Combustible viejo que lleva semanas en el estanque.</li>
+      <li>Filtro de aire muy tapado.</li>
+      <li>En frío: falta usar el estrangulador (choke), si tu moto lo tiene.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Nivel de combustible y posición de la llave de paso.</li>
+      <li>Saca la bujía con la llave correcta y mírala: si está negra de hollín o mojada de combustible, límpiala o cámbiala.</li>
+      <li>Revisa el filtro de aire: si está negro o con tierra, límpialo o reemplázalo según su tipo.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>Con bujía nueva, combustible fresco y filtro limpio sigue sin encender: puede venir del carburador, la inyección o el encendido.</div>
+  <div class="pie"><span>Diagnóstico</span><span>4</span></div>
+</section>
+
+<!-- FALLA 03 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">03</span><h2>Se apaga en<br>ralentí o en frío</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Anda bien acelerando, pero al soltar el acelerador o en un semáforo se apaga. O cuesta mantenerla encendida los primeros minutos.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Ralentí (marcha mínima) regulado muy bajo.</li>
+      <li>Carburador con suciedad en los pasos pequeños.</li>
+      <li>Filtro de aire tapado.</li>
+      <li>Entrada de aire por una manguera o abrazadera suelta entre el carburador y el motor.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>En motos a carburador, el tornillo de ralentí permite subir un poco la marcha mínima: hazlo de a poco con el motor tibio.</li>
+      <li>Revisa que las mangueras y abrazaderas de admisión estén firmes y sin grietas.</li>
+      <li>Limpia o cambia el filtro de aire.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>Tu moto es a inyección y marca una luz de falla en el tablero, o si hay que desarmar y limpiar el carburador y nunca lo has hecho.</div>
+  <div class="pie"><span>Diagnóstico</span><span>5</span></div>
+</section>
+
+<!-- FALLA 04 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">04</span><h2>Pierde fuerza<br>o no acelera</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Le cuesta subir cuestas, no pasa de cierta velocidad o se siente "amarrada", aunque el motor suba de vueltas.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Filtro de aire sucio o bujía en mal estado.</li>
+      <li>Un freno que queda apretando la rueda.</li>
+      <li>Cadena demasiado tensa.</li>
+      <li>Embrague patinando: el motor sube de vueltas pero la moto no gana velocidad.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Con la moto en el caballete central, gira cada rueda con la mano: debe girar libre, sin frenarse sola.</li>
+      <li>Revisa la holgura de la cadena (ficha 07).</li>
+      <li>Revisa filtro de aire y bujía.</li>
+      <li>Si el embrague tiene cable, revisa que la maneta tenga un poco de juego libre antes de empezar a actuar.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>El embrague patina aun con el cable bien regulado: los discos pueden estar gastados y hay que abrir el motor.</div>
+  <div class="pie"><span>Diagnóstico</span><span>6</span></div>
+</section>
+
+<!-- FALLA 05 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">05</span><h2>Tirones<br>y petardeos</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>La moto avanza a saltos, se corta al acelerar parejo o suenan explosiones por el escape al soltar el acelerador.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Bujía gastada o capuchón del cable de bujía suelto.</li>
+      <li>Mezcla de aire y combustible desajustada.</li>
+      <li>Combustible con agua o suciedad.</li>
+      <li>Escape con fugas en la unión con el motor (explosiones al desacelerar).</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Que el capuchón de la bujía esté bien encajado y el cable sin cortes.</li>
+      <li>El estado y color de la bujía: color café claro suele indicar buena combustión; negro, mezcla rica; blanco, mezcla pobre.</li>
+      <li>Si hay filtro de combustible visible, que no esté sucio.</li>
+      <li>Las uniones del escape: con el motor frío, que no haya tuercas sueltas ni marcas de hollín.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>Hay que regular la carburación o la inyección: un ajuste mal hecho puede recalentar el motor.</div>
+  <div class="pie"><span>Diagnóstico</span><span>7</span></div>
+</section>
+
+<!-- FALLA 06 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">06</span><h2>Frenos débiles<br>o que chillan</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Tienes que apretar más para frenar, la maneta llega casi al puño, se siente esponjosa o los frenos chillan.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Pastillas (disco) o zapatas (tambor) gastadas.</li>
+      <li>Líquido de frenos bajo o viejo.</li>
+      <li>Aire en el sistema hidráulico: la maneta se siente esponjosa.</li>
+      <li>Disco sucio o con grasa, o pastillas cristalizadas.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Mira el material de las pastillas por el costado del caliper: si queda muy poco (alrededor de 2 mm o menos), toca cambiarlas.</li>
+      <li>El nivel del depósito de líquido de frenos entre las marcas MIN y MAX. Un nivel bajo también indica pastillas gastadas.</li>
+      <li>En frenos de tambor, el indicador de desgaste junto al eje y la regulación de la tuerca.</li>
+      <li>Nunca uses desengrasante con aceite sobre el disco.</li>
+    </ul></div>
+  <div class="taller"><h3>No te arriesgues si…</h3>La maneta está esponjosa, hay fugas de líquido o no sabes purgar el sistema. Los frenos no se prueban en la calle.</div>
+  <div class="pie"><span>Diagnóstico</span><span>8</span></div>
+</section>
+
+<!-- FALLA 07 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">07</span><h2>Cadena ruidosa<br>o que salta</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Ruido metálico al avanzar, golpes al cambiar de marcha o al acelerar y soltar, o la cadena se ve suelta y seca.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Cadena sin lubricar u oxidada.</li>
+      <li>Tensión incorrecta: muy suelta golpea y puede salirse; muy tensa desgasta y roba fuerza.</li>
+      <li>Kit de arrastre gastado: cadena estirada y dientes del piñón y la corona en punta.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Mide la holgura en el punto medio del tramo de abajo, subiendo y bajando la cadena. La medida correcta la indica el manual o una etiqueta en el basculante; en muchas motos anda entre 20 y 35 mm.</li>
+      <li>Lubrica con lubricante de cadena, con la cadena limpia y después de rodar, cuando está tibia.</li>
+      <li>Tira la cadena hacia atrás desde la corona: si se separa y deja ver gran parte del diente, está estirada.</li>
+    </ul></div>
+  <div class="dato">Cadena, piñón y corona se cambian juntos. Poner una cadena nueva sobre dientes gastados la desgasta rápido.</div>
+  <div class="pie"><span>Diagnóstico</span><span>9</span></div>
+</section>
+
+<!-- FALLA 08 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">08</span><h2>Se calienta<br>demasiado</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>El indicador de temperatura sube más de lo normal, el ventilador no para, pierde fuerza en caliente o huele a quemado.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li><b>Refrigerada por líquido:</b> refrigerante bajo, ventilador que no funciona o radiador tapado con barro o insectos.</li>
+      <li><b>Refrigerada por aire:</b> aceite bajo o viejo, aletas del motor sucias o mezcla muy pobre.</li>
+      <li>Mucho tiempo detenida con el motor encendido, en tacos o con calor.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>El nivel de refrigerante en el depósito auxiliar, siempre con el motor frío.</li>
+      <li>Que el ventilador se encienda cuando el motor está caliente.</li>
+      <li>Limpia el panal del radiador con agua a baja presión, desde atrás hacia adelante.</li>
+      <li>El nivel de aceite por la mirilla o la varilla.</li>
+    </ul></div>
+  <div class="taller"><h3>Cuidado</h3>Nunca abras la tapa del radiador con el motor caliente: el líquido sale a presión y quema. Si hay pérdida de refrigerante sin fuga visible, llévala al taller.</div>
+  <div class="pie"><span>Diagnóstico</span><span>10</span></div>
+</section>
+
+<!-- FALLA 09 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">09</span><h2>Humo por<br>el escape</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>El color del humo cuenta qué pasa dentro del motor. Míralo con el motor ya caliente.</div>
+  <div class="humos">
+    <div class="humo"><b>Blanco</b><div>En frío y un par de minutos es solo vapor, es normal. Si sigue con el motor caliente y el refrigerante baja, puede estar entrando líquido al motor.</div></div>
+    <div class="humo"><b>Azul o gris</b><div>El motor está quemando aceite: exceso de aceite, anillos o retenes de válvula gastados. Suele venir con consumo de aceite.</div></div>
+    <div class="humo"><b>Negro</b><div>Sobra combustible (mezcla rica): filtro de aire tapado, estrangulador puesto o carburación desajustada.</div></div>
+  </div>
+  <div class="bloque"><h3>Qué revisar tú</h3>
+    <ul class="lista">
+      <li>Que el nivel de aceite no esté sobre el máximo.</li>
+      <li>El filtro de aire y que el estrangulador esté cerrado.</li>
+      <li>Si el nivel de aceite o refrigerante baja de una semana a otra.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>El humo azul o blanco continúa en caliente: suele requerir abrir el motor.</div>
+  <div class="pie"><span>Diagnóstico</span><span>11</span></div>
+</section>
+
+<!-- FALLA 10 -->
+<section class="pagina">
+  <div class="ficha-cabecera"><span class="num">10</span><h2>La batería<br>se descarga</h2></div>
+  <div class="senal"><strong>Cómo se nota</strong>Cargas la batería y a los pocos días no arranca, las luces bajan de intensidad o se funden ampolletas seguido.</div>
+  <div class="bloque"><h3>Causas más probables</h3>
+    <ul class="lista">
+      <li>Batería vieja que ya no retiene la carga.</li>
+      <li>El sistema de carga no está cargando: regulador/rectificador o estator con falla.</li>
+      <li>Un accesorio conectado directo a la batería que consume con la moto apagada.</li>
+      <li>Bornes sueltos o sulfatados.</li>
+    </ul></div>
+  <div class="bloque"><h3>Qué revisar tú (con multímetro)</h3>
+    <ul class="lista">
+      <li><b>Moto apagada:</b> cerca de 12,6 V es una batería cargada.</li>
+      <li><b>Motor encendido y acelerado un poco:</b> debería marcar más, aproximadamente entre 13,5 y 14,5 V. Si no sube, el sistema no está cargando.</li>
+      <li>Desconecta los accesorios agregados y revisa si la descarga desaparece.</li>
+    </ul></div>
+  <div class="taller"><h3>Llévala al taller si…</h3>El voltaje no sube con el motor encendido, o sube demasiado (sobre 15 V): quema ampolletas y daña la batería.</div>
+  <div class="pie"><span>Diagnóstico</span><span>12</span></div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="pagina">
+  <div class="eyebrow">Para prevenir</div>
+  <h2>Checklist de mantenimiento</h2>
+  <table class="check">
+    <caption>Antes de salir <span class="acento">· 2 minutos</span></caption>
+    <tr><td><span class="caja"></span></td><td>Neumáticos: aire, cortes y desgaste</td><td></td></tr>
+    <tr><td><span class="caja"></span></td><td>Frenos delantero y trasero responden firme</td><td></td></tr>
+    <tr><td><span class="caja"></span></td><td>Luces, intermitentes y bocina</td><td></td></tr>
+    <tr><td><span class="caja"></span></td><td>Cadena con holgura correcta y lubricada</td><td></td></tr>
+    <tr><td><span class="caja"></span></td><td>Sin manchas de aceite o líquido bajo la moto</td><td></td></tr>
+  </table>
+  <table class="check">
+    <caption>Cada semana</caption>
+    <tr><td><span class="caja"></span></td><td>Presión de neumáticos en frío</td><td>Según manual</td></tr>
+    <tr><td><span class="caja"></span></td><td>Lubricar cadena (y siempre después de lluvia)</td><td>Semanal</td></tr>
+    <tr><td><span class="caja"></span></td><td>Nivel de aceite, líquido de frenos y refrigerante</td><td>Semanal</td></tr>
+  </table>
+  <table class="check">
+    <caption>Periódico <span class="acento">· anota tu kilometraje</span></caption>
+    <tr><td><span class="caja"></span></td><td>Cambio de aceite y filtro de aceite</td><td>Según manual</td></tr>
+    <tr><td><span class="caja"></span></td><td>Filtro de aire y bujía</td><td>Según manual</td></tr>
+    <tr><td><span class="caja"></span></td><td>Pastillas o zapatas de freno</td><td>Revisar seguido</td></tr>
+    <tr><td><span class="caja"></span></td><td>Kit de arrastre (cadena, piñón, corona)</td><td>Según desgaste</td></tr>
+    <tr><td><span class="caja"></span></td><td>Cambio de líquido de frenos</td><td>Según manual</td></tr>
+  </table>
+  <div class="dato">Los kilómetros exactos de cada cambio dependen de tu moto: están en su manual. Si usas la moto a diario en ciudad, con tacos o calor, no estires los plazos.</div>
+  <div class="pie"><span>Mantenimiento</span><span>13</span></div>
+</section>
+
+<!-- SEGURIDAD -->
+<section class="pagina">
+  <div class="eyebrow">Antes de meter mano</div>
+  <h2>6 reglas para trabajar seguro</h2>
+  <div class="reglas">
+    <div class="regla"><b>1</b>Trabaja con el motor frío. El escape y el motor queman mucho después de apagarlos.</div>
+    <div class="regla"><b>2</b>Deja la moto firme en el caballete central o un soporte, en suelo parejo.</div>
+    <div class="regla"><b>3</b>Si vas a tocar la parte eléctrica, desconecta primero el borne negativo de la batería.</div>
+    <div class="regla"><b>4</b>Nada de fuego ni cigarros cerca del combustible. Trabaja en un lugar ventilado.</div>
+    <div class="regla"><b>5</b>Usa guantes y lentes al manipular líquidos, limpiar piezas o usar aire comprimido.</div>
+    <div class="regla"><b>6</b>Aprieta los pernos de frenos y ruedas con el torque indicado. Si dudas, pregunta antes de salir.</div>
+  </div>
+  <div class="dato" style="margin-top:6mm">El aceite y el líquido de frenos usados no se botan a la tierra ni al desagüe: llévalos a un punto de reciclaje o a un taller.</div>
+  <div class="pie"><span>Seguridad</span><span>14</span></div>
+</section>
+
+<!-- CIERRE -->
+<section class="pagina oscura cierre">
+  <div class="logo"><i></i>Mecánica de Motos</div>
+  <div style="margin-top:9mm">
+    <div class="eyebrow">El siguiente paso</div>
+    <h2>Ya sabes reconocer la falla. <span class="acento">Ahora aprende a repararla.</span></h2>
+    <p>Esta guía te ayuda a detectar qué tiene tu moto. En el curso ves en video, paso a paso y desde cero, cómo mantenerla y repararla con herramientas básicas.</p>
+    <ul class="modulos">
+      <li><b>01</b>Conocimientos básicos de mecánica</li>
+      <li><b>02</b>Diagnóstico de problemas</li>
+      <li><b>03</b>Mantenimiento preventivo</li>
+      <li><b>04</b>Reparaciones y ajustes</li>
+      <li><b>05</b>Optimización del rendimiento</li>
+      <li><b>06</b>Seguridad y normativas</li>
+      <li><b>07</b>Gestión de taller</li>
+    </ul>
+    <a class="boton" href="https://go.hotmart.com/D107545911X?ap=0d3c">Quiero entrar al curso</a>
+    <p class="boton-sub">Acceso 24 horas · 2 ebooks de regalo · Certificado · 7 días de garantía</p>
+  </div>
+  <div class="pie"><span>Mecánica de Motos</span><span>15</span></div>
+</section>
+
+</body>
+</html>
