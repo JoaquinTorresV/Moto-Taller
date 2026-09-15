@@ -347,7 +347,7 @@
 <body>
 
 <!-- [EDITAR] Mensaje de la barra superior -->
-<div class="topbar">Oferta -60%: de $50 a solo $19.90 USD</div>
+<div class="topbar" id="topbar">60% de descuento · termina en <b id="tbCuenta" style="font-variant-numeric:tabular-nums">7d 00:00:00</b></div>
 
 <!-- Solo al llegar desde la página del regalo (?regalo=enviado): aviso del correo + grupo de WhatsApp -->
 <section id="bienvenidaRegalo" hidden style="background:#fff;color:#000;padding:12px 0;border-bottom:3px solid var(--acento)">
@@ -555,7 +555,7 @@
         </ul>
 
         <!-- [EDITAR] data-fin = fecha y hora REAL en que termina la oferta. Al pasar la fecha, el contador se oculta solo -->
-        <div class="cuenta-wrap" id="cuentaWrap" data-fin="2026-09-21T23:59:00-03:00">
+        <div class="cuenta-wrap" id="cuentaWrap" data-fin="2026-09-22T23:59:00-03:00">
           <p class="cuenta-titulo">La oferta termina en</p>
           <div class="cuenta">
             <div><b id="cDias">0</b><small>días</small></div>
@@ -661,8 +661,15 @@
   const dos = n => String(n).padStart(2, '0');
   function tick() {
     const resta = fin - Date.now();
-    if (!(resta > 0)) { cuentaWrap.hidden = true; return; }
+    if (!(resta > 0)) {
+      cuentaWrap.hidden = true;
+      document.getElementById('topbar').hidden = true;
+      return;
+    }
     const s = Math.floor(resta / 1000);
+    // barra superior: mismo plazo, formato corto
+    document.getElementById('tbCuenta').textContent =
+      `${Math.floor(s / 86400)}d ${dos(Math.floor(s % 86400 / 3600))}:${dos(Math.floor(s % 3600 / 60))}:${dos(s % 60)}`;
     document.getElementById('cDias').textContent = Math.floor(s / 86400);
     document.getElementById('cHoras').textContent = dos(Math.floor(s % 86400 / 3600));
     document.getElementById('cMin').textContent = dos(Math.floor(s % 3600 / 60));
