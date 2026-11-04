@@ -8,6 +8,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ====== MEDICIÓN ======
+     [EDITAR] Pega aquí tus identificadores. Mientras estén vacíos no se carga nada
+     y la página sigue funcionando igual. Los mismos identificadores hay que
+     pegarlos también en Hotmart (Producto → Configuración → Pixel de seguimiento)
+     para que las COMPRAS queden registradas. -->
+<script>
+  window.MEDICION = {
+    ga4: '',        // Ej: 'G-XXXXXXXXXX'  (Google Analytics 4)
+    metaPixel: ''   // Ej: '1234567890123' (Píxel de Meta)
+  };
+</script>
+<script>
+  (function () {
+    var cfg = window.MEDICION || {};
+
+    // Google Analytics 4
+    if (cfg.ga4) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.ga4;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', cfg.ga4);
+    }
+
+    // Píxel de Meta
+    if (cfg.metaPixel) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', cfg.metaPixel);
+      fbq('track', 'PageView');
+    }
+  })();
+</script>
 <style>
   /* ====== CONFIG ======
      [EDITAR] marca los puntos que cambian: checkout, precios y fecha de la promoción */
@@ -230,7 +270,7 @@
     </ul>
 
     <!-- [EDITAR] Checkout de Hotmart: el mismo en todos los botones -->
-    <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">
+    <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">
       Quiero aprender mecánica de motos
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
@@ -260,7 +300,7 @@
 </section>
 
 <!-- ============ 3 · TRANSFORMACIÓN ============ -->
-<section class="grafito">
+<section class="grafito" id="transformacion">
   <div class="wrap">
     <span class="eyebrow">Hacia dónde avanzas</span>
     <h2>Entiende mejor tu propia motocicleta</h2>
@@ -286,7 +326,7 @@
     </div>
 
     <div style="margin-top:28px">
-      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">Quiero empezar a aprender</a>
+      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">Quiero empezar a aprender</a>
       <span class="btn-sub">Precio de lanzamiento: US$19,90 · Pago único</span>
     </div>
   </div>
@@ -348,7 +388,7 @@
     </div>
 
     <div style="margin-top:28px">
-      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">Acceder al curso por US$19,90</a>
+      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">Acceder al curso por US$19,90</a>
       <span class="btn-sub">Compra segura mediante Hotmart</span>
     </div>
   </div>
@@ -474,7 +514,7 @@
         <li>Acceso de por vida.</li>
       </ul>
 
-      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">
+      <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">
         Sí, quiero el precio de lanzamiento
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
@@ -530,7 +570,7 @@
       <p class="posterior">Precio posterior previsto: <s>US$40,00</s></p>
     </div>
 
-    <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">Quiero aprender mecánica de motos</a>
+    <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">Quiero aprender mecánica de motos</a>
     <span class="btn-sub">Compra mediante Hotmart</span>
     <p class="nota">Garantía anunciada de 7 días, sujeta a las condiciones de Hotmart. Los resultados de aprendizaje dependen de la dedicación, la práctica y las circunstancias de cada alumno.</p>
   </div>
@@ -544,7 +584,7 @@
 
 <div class="cta-movil">
   <div>Lanzamiento<b>US$19,90</b></div>
-  <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c">Inscribirme</a>
+  <a class="btn" href="https://go.hotmart.com/D107545911X?ap=0d3c&amp;src=landing">Inscribirme</a>
 </div>
 
 <script>
@@ -565,6 +605,48 @@
     barra.classList.toggle('oculta', visibles.size > 0);
   });
   document.querySelectorAll('.hero .btn, #oferta .btn, .cierre .btn').forEach(function (el) { obs.observe(el); });
+
+  // ====== MEDICIÓN DE CLICS ======
+  // Nombre de cada botón según la sección donde está
+  function nombreCTA(el) {
+    if (el.closest('.cta-movil')) return 'barra_fija';
+    if (el.closest('.hero')) return 'inicio';
+    if (el.closest('.cierre')) return 'cierre';
+    var s = el.closest('section');
+    return (s && (s.id || s.className.split(' ')[0])) || 'otro';
+  }
+
+  // Si la visita llega etiquetada (?utm_source=... o ?src=...), esa etiqueta
+  // viaja hasta Hotmart, para saber qué canal produjo cada venta.
+  var params = new URLSearchParams(location.search);
+  var origen = params.get('utm_source') || params.get('src');
+
+  document.querySelectorAll('a[href*="hotmart.com"]').forEach(function (a) {
+    if (origen) {
+      var u = new URL(a.href);
+      u.searchParams.set('src', origen.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 30));
+      a.href = u.toString();
+    }
+    a.addEventListener('click', function () {
+      var cta = nombreCTA(a);
+      if (window.gtag) gtag('event', 'clic_comprar', { boton: cta, origen: origen || 'directo' });
+      if (window.fbq) fbq('track', 'InitiateCheckout', { content_name: 'Curso Mecánica de Motos', boton: cta });
+    });
+  });
+
+  // Cuánto de la página alcanza a leer la gente
+  var hitos = [25, 50, 75, 100], vistos = {};
+  window.addEventListener('scroll', function () {
+    var alto = document.documentElement.scrollHeight - innerHeight;
+    if (alto <= 0) return;
+    var pct = (scrollY / alto) * 100;
+    hitos.forEach(function (h) {
+      if (pct >= h && !vistos[h]) {
+        vistos[h] = true;
+        if (window.gtag) gtag('event', 'scroll_' + h);
+      }
+    });
+  }, { passive: true });
 </script>
 </body>
 </html>
