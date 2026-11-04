@@ -10,27 +10,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ====== MEDICIÓN ======
-     [EDITAR] Pega aquí tus identificadores. Mientras estén vacíos no se carga nada
-     y la página sigue funcionando igual. Los mismos identificadores hay que
-     pegarlos también en Hotmart (Producto → Configuración → Pixel de seguimiento)
-     para que las COMPRAS queden registradas. -->
+     [EDITAR] Mientras un campo esté vacío no se carga nada de ese servicio.
+     Usa GTM *o* GA4 directo, no los dos a la vez, o las visitas se cuentan doble.
+     Los mismos identificadores hay que cargarlos también en Hotmart
+     (Producto → Configuración → Pixel de seguimiento) para registrar las COMPRAS. -->
 <script>
   window.MEDICION = {
-    ga4: '',        // Ej: 'G-XXXXXXXXXX'  (Google Analytics 4)
-    metaPixel: ''   // Ej: '1234567890123' (Píxel de Meta)
+    gtm: 'GTM-NK88MB6L',  // Contenedor de Google Tag Manager
+    ga4: '',              // Solo si NO usas GTM. Ej: 'G-XXXXXXXXXX'
+    metaPixel: ''         // Ej: '1234567890123' (Píxel de Meta)
   };
 </script>
 <script>
   (function () {
     var cfg = window.MEDICION || {};
+    window.dataLayer = window.dataLayer || [];
 
-    // Google Analytics 4
-    if (cfg.ga4) {
+    // Google Tag Manager (contenedor: las etiquetas se configuran dentro de GTM)
+    if (cfg.gtm) {
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtm.js?id=' + cfg.gtm;
+      document.head.appendChild(g);
+    }
+
+    // Google Analytics 4 directo (alternativa a GTM)
+    if (cfg.ga4 && !cfg.gtm) {
       var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.ga4;
       document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
       window.gtag = function () { window.dataLayer.push(arguments); };
       gtag('js', new Date());
       gtag('config', cfg.ga4);
@@ -228,6 +238,9 @@
 </style>
 </head>
 <body>
+
+<!-- Google Tag Manager, para navegadores sin JavaScript -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK88MB6L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Barra superior: el salto de precio es la urgencia real, no hace falta inventar plazos -->
 <div class="topbar">
@@ -628,11 +641,23 @@
       a.href = u.toString();
     }
     a.addEventListener('click', function () {
-      var cta = nombreCTA(a);
-      if (window.gtag) gtag('event', 'clic_comprar', { boton: cta, origen: origen || 'directo' });
-      if (window.fbq) fbq('track', 'InitiateCheckout', { content_name: 'Curso Mecánica de Motos', boton: cta });
+      evento('clic_comprar', { boton: nombreCTA(a), origen: origen || 'directo' });
     });
   });
+
+  // Un solo punto de salida: dataLayer (lo lee GTM), GA4 directo y Meta
+  function evento(nombre, datos) {
+    datos = datos || {};
+    if (window.dataLayer) {
+      var d = { event: nombre };
+      for (var k in datos) d[k] = datos[k];
+      window.dataLayer.push(d);
+    }
+    if (window.gtag) gtag('event', nombre, datos);
+    if (window.fbq && nombre === 'clic_comprar') {
+      fbq('track', 'InitiateCheckout', { content_name: 'Curso Mecánica de Motos', boton: datos.boton });
+    }
+  }
 
   // Cuánto de la página alcanza a leer la gente
   var hitos = [25, 50, 75, 100], vistos = {};
@@ -643,7 +668,7 @@
     hitos.forEach(function (h) {
       if (pct >= h && !vistos[h]) {
         vistos[h] = true;
-        if (window.gtag) gtag('event', 'scroll_' + h);
+        evento('scroll_pagina', { profundidad: h });
       }
     });
   }, { passive: true });
