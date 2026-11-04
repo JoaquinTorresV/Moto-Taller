@@ -11,14 +11,15 @@
 
 <!-- ====== MEDICIÓN ======
      [EDITAR] Mientras un campo esté vacío no se carga nada de ese servicio.
-     Usa GTM *o* GA4 directo, no los dos a la vez, o las visitas se cuentan doble.
-     Los mismos identificadores hay que cargarlos también en Hotmart
+     GA4 se carga directo desde aquí. IMPORTANTE: no crees además una etiqueta de
+     GA4 dentro de GTM con este mismo ID, o cada visita se contaría dos veces.
+     Este mismo ID hay que cargarlo también en Hotmart
      (Producto → Configuración → Pixel de seguimiento) para registrar las COMPRAS. -->
 <script>
   window.MEDICION = {
-    gtm: 'GTM-NK88MB6L',  // Contenedor de Google Tag Manager
-    ga4: '',              // Solo si NO usas GTM. Ej: 'G-XXXXXXXXXX'
-    metaPixel: ''         // Ej: '1234567890123' (Píxel de Meta)
+    gtm: 'GTM-NK88MB6L',    // Contenedor de Google Tag Manager (hoy sin etiquetas)
+    ga4: 'G-WPN3WZD3V7',    // Google Analytics 4 · flujo "moto taller"
+    metaPixel: ''           // Ej: '1234567890123' (Píxel de Meta)
   };
 </script>
 <script>
@@ -35,8 +36,8 @@
       document.head.appendChild(g);
     }
 
-    // Google Analytics 4 directo (alternativa a GTM)
-    if (cfg.ga4 && !cfg.gtm) {
+    // Google Analytics 4 directo
+    if (cfg.ga4) {
       var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.ga4;
